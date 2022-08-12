@@ -18,10 +18,11 @@
         <x-admin.input inputName="Nama" formName="name" />
       </div>
       <div class="mb-6"><!--upload file-->
-        <x-admin.input-upload type="pdf" inputName="Dokumen PDF" formName="source" />
+        <x-admin.input-upload type="pdf" inputName="Dokumen PDF" formName="source" :isReadOnly=false :isError=false >
+        </x-admin.input-upload>
       </div>
       <div class="mb-6">
-        <x-admin.form-button isAjax={{ true }}>
+        <x-admin.form-button :isAjax=true>
           Tambah
         </x-admin.form-button>
       </div>
@@ -34,6 +35,7 @@
 @push('upload-script') 
   <script>
     // ----------- UPLOAD ------------
+    let form = document.querySelector('form#form-upload');
     form.addEventListener('submit', (e)=>{
       e.preventDefault();
       upload()
@@ -41,7 +43,7 @@
 
     function upload(){
       let data =  new FormData(form);
-      data.set('source', fileVal);
+      data.set('source', source.fileVal);
       data.set('_token', '{{csrf_token()}}');
 
       fetch('/admin/dokumen', {
