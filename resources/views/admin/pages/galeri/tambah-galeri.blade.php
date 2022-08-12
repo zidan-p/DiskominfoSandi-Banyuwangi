@@ -29,9 +29,9 @@
       <div class="mb-6">
         <x-admin.input inputName="Source" formName="source" />
       </div>
-      <div id="wrp" class="mb-6">
+      <div class="mb-6">
         <x-admin.input-upload type="image" inputName="File Gambar" formName="source" :isReadOnly=false :isError=false >
-          hanya file gambar, untuk video bisa dimasukan kedalam input text
+          hanya file gambar, untuk video bisa dimasukan kedalam input text source
         </x-admin.input-upload>
       </div>
       <div class="mb-6">
@@ -49,8 +49,13 @@
 @push('upload-script')
     <script>
 
+
       //-------- untuk perubahan tipe galeri ------
-      if(tipe.input)
+      if(tipe.input == 'gambar'){
+        console.log('ini adalah gambar')
+      }else if(tipe.input == ' video'){
+        console.log('ini adalah video')
+      }
     </script>
     
 @endpush
